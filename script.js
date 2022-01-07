@@ -1,5 +1,5 @@
 function computerPlay() {
-  let wordBank = ["Rock", "Paper", "Scissors"];
+  const wordBank = ["Rock", "Paper", "Scissors"];
   return wordBank[Math.floor(Math.random() * wordBank.length)];
 }
 
@@ -32,5 +32,42 @@ function playRound(playerSelection, computerSelection) {
     } else if (computerSelection === "Scissors") {
       return "You Tied! Scissors ties Scissors";
     }
+  } else {
+    return null;
   }
 }
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("Enter Rock, Paper, or Scissors:", "");
+    let computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+    console.log(result);
+    if (result !== null) {
+      if (result.includes("Win")) {
+        playerScore++;
+      } else if (result.includes("Lose")) {
+        computerScore++;
+      }
+    }
+  }
+
+  if (playerScore > computerScore) {
+    console.log(`Player score: ${playerScore}`);
+    console.log(`Computer score: ${computerScore}`);
+    console.log("You are the winner");
+  } else if (playerScore < computerScore) {
+    console.log(`Player score: ${playerScore}`);
+    console.log(`Computer score: ${computerScore}`);
+    console.log("You are the loser");
+  } else {
+    console.log(`Player score: ${playerScore}`);
+    console.log(`Computer score: ${computerScore}`);
+    console.log("You tied the computer");
+  }
+}
+
+game();
